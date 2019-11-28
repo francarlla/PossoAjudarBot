@@ -24,7 +24,7 @@ namespace ExemploWEBApi.Controllers
             string mensagem = "Sua(s) próxima(s) prova(s) será(ao): ";
             try
             {
-               
+
                 //Chama o serviço somente se a matricula tiver sido passada
                 if (!string.IsNullOrEmpty(matricula.ToString()))
                 {
@@ -32,9 +32,9 @@ namespace ExemploWEBApi.Controllers
                     foreach (var item in provas)
 
                         mensagem = mensagem + "\nDiscipplina: " + item.nome + " \nData: " + item.dataInicio.Value.ToShortDateString();
-                   // var response = await 
-                    return Ok(mensagem); 
-                }                  
+                    // var response = await 
+                    return Ok(mensagem);
+                }
                 else
                     return BadRequest("Matrícula necessária para esse serviço!");
             }

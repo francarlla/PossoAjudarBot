@@ -111,6 +111,8 @@
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Models\Prova.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HttpRetryHandler.cs" />
+    <Compile Include="Services\WebClientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
