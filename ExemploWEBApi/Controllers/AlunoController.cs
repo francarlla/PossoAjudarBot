@@ -14,15 +14,17 @@ namespace ExemploWEBApi.Controllers
         private Aluno alunoModel = new Aluno();
 
         [HttpGet]
-        [Route("api/Prova/getDadosCadastrais")]
+        [Route("api/Aluno/getDadosCadastrais")]
         public async Task<IHttpActionResult> getDadosCadastrais(int matricula)
         {
             try
             {
+                Entities.Aluno aluno = new Entities.Aluno();
                 //Chama o serviço somente se a matricula tiver sido passada
                 if (!string.IsNullOrEmpty(matricula.ToString()))
                 {
-                    return Ok(alunoModel.getDadosCadastrais(matricula));
+                    aluno = alunoModel.getDadosCadastrais(matricula);
+                    return Ok(aluno);
                 }
                 else
                     return BadRequest("Matrícula necessária para esse serviço!");
@@ -35,7 +37,7 @@ namespace ExemploWEBApi.Controllers
         }
 
         [HttpGet]
-        [Route("api/Prova/getDisciplinas")]
+        [Route("api/Aluno/getDisciplinas")]
         public async Task<IHttpActionResult> getDisciplinas(int matricula)
         {
             try
@@ -55,25 +57,5 @@ namespace ExemploWEBApi.Controllers
 
         }
 
-        // GET: api/Aluno/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Aluno
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Aluno/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Aluno/5
-        public void Delete(int id)
-        {
-        }
     }
 }

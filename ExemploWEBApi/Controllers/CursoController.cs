@@ -5,29 +5,33 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ExemploWEBApi.Models;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using ExemploWEBApi.Entities;
+using System.Net.Http.Formatting;
 
 namespace ExemploWEBApi.Controllers
 {
-    public class ProfessorController : ApiController
+    public class CursoController : ApiController
     {
-        private Models.Professor professorModel = new Models.Professor();
+        private Models.Curso cursoModel = new Models.Curso();
 
         [HttpGet]
-        [Route("api/Prova/getEmailProfessor")]
-        public async Task<IHttpActionResult> getEmailProfessor(int idCurso, int idDisciplina)
+        [Route("api/Curso/getContatoCoordenacao")]
+        public async Task<IHttpActionResult> getContatoCoordenacao(int idCurso)
         {
-           
             try
             {
+                Coordenacao coordenacao = new Coordenacao();
                 //Chama o serviço somente se a matricula tiver sido passada
                 if (!string.IsNullOrEmpty(idCurso.ToString()))
                 {
-                    return Ok(professorModel.getEmailProfessor(idCurso, idDisciplina));
+                    coordenacao = cursoModel.getContatoCoordenacao(idCurso);
+                    return Ok(coordenacao);
                 }
                 else
-                    return BadRequest("Matrícula necessária para esse serviço!");
+                    return BadRequest("Código do curso é necessário para esse serviço!");
             }
             catch (Exception ex)
             {
@@ -35,6 +39,5 @@ namespace ExemploWEBApi.Controllers
             }
 
         }
-
     }
 }

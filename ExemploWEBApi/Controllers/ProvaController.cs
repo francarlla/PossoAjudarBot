@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using ExemploWEBApi.Entities;
+using System.Net.Http.Formatting;
 
 namespace ExemploWEBApi.Controllers
 {
@@ -21,7 +22,6 @@ namespace ExemploWEBApi.Controllers
         public async Task<IHttpActionResult> getDataProximaProva(int matricula)
         {
             List<EventosDiario> provas = new List<EventosDiario>();
-            string mensagem = "Sua(s) próxima(s) prova(s) será(ao): ";
             try
             {
 
@@ -29,11 +29,8 @@ namespace ExemploWEBApi.Controllers
                 if (!string.IsNullOrEmpty(matricula.ToString()))
                 {
                     provas = provaModel.getDataProximaProva(matricula);
-                    foreach (var item in provas)
-
-                        mensagem = mensagem + "\nDiscipplina: " + item.nome + " \nData: " + item.dataInicio.Value.ToShortDateString();
-                    // var response = await 
-                    return Ok(mensagem);
+                  
+                    return Ok(new { response = provas });
                 }
                 else
                     return BadRequest("Matrícula necessária para esse serviço!");
@@ -51,10 +48,13 @@ namespace ExemploWEBApi.Controllers
         {
             try
             {
+                List<EventosDiario> provas = new List<EventosDiario>();
+
                 //Chama o serviço somente se a matricula tiver sido passada
                 if (!string.IsNullOrEmpty(matricula.ToString()))
                 {
-                    return Ok(provaModel.getProvas(matricula));
+                    provas = provaModel.getProvas(matricula);
+                    return Ok(new { response = provas });
                 }
                 else
                     return BadRequest("Matrícula necessária para esse serviço!");

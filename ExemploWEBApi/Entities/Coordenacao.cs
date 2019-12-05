@@ -12,5 +12,7 @@ namespace ExemploWEBApi.Entities
         public int? idCurso { get; set; }
         public int? telefone { get; set; }
         public string email { get; set; }
+        public string nomeCoordenador { get; set; }
+        public string nomeCurso { get; set; }
     }
 }

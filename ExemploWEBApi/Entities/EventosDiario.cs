@@ -13,8 +13,8 @@ namespace ExemploWEBApi.Entities
         public string nome { get; set; }
         public string descricao { get; set; }
         public decimal? pontuacao { get; set; }
-        public DateTime? dataInicio { get; set; }
-        public DateTime? dataFim { get; set; }
+        public string dataInicio { get; set; }
+        public string dataFim { get; set; }
 
         public EventosDiario()
         {
